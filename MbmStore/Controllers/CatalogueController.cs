@@ -4,19 +4,36 @@ using System.Linq;
 using System.Threading.Tasks;
 using MbmStore.Models;
 using MbmStore.Infrastructure;
+using MbmStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MbmStore.Controllers
 {
     public class CatalogueController : Controller
     {
-        public IActionResult Index()
-        {
-            ViewBag.Books = Repository.Products.OfType<Book>().ToList();
-            ViewBag.Cds = Repository.Products.OfType<MusicCD>().ToList();
-            ViewBag.Movies = Repository.Products.OfType<Movie>().ToList();
+        public int PageSize = 4;
 
-            return View();
+        // GET: Catalogue
+        public IActionResult Index(string category, int page = 1)
+        {
+            ProductsListViewModel model = new ProductsListViewModel();
+            model = new ProductsListViewModel
+            {
+                Products = Repository.Products
+                .Where(p => category == null || p.Category == category)
+                .OrderBy(p => p.ProductId)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize),
+                PageInfo = new PageInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = category == null ? Repository.Products.Count() : Repository.Products.Where(e => e.Category == category).Count()
+                },
+                CurrentCategory = category
+            };
+
+            return View(model);
         }
     }
 }

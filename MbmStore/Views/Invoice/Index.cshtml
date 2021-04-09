@@ -7,6 +7,13 @@
 
 <h1>Invoices</h1>
 
+<form asp-controller="Invoice" asp-action="index" method="post">
+    <div>
+        <select name="customer" id="customer" asp-items="@ViewBag.Customers as List<SelectListItem>"></select>
+        <button type="submit">Show invoices</button>
+    </div>
+</form>
+
 <table style="width:600px">
     <tr>
         <th>Customer</th>

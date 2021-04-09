@@ -13,28 +13,33 @@ namespace MbmStore.Infrastructure
 
         static Repository()
         {
-            Book rememberMe = new Book("Mary Higgins Clark", "Remember Me", 210.25m, 1994);
+            Book rememberMe = new Book(10001, "Mary Higgins Clark", "Remember Me", 210.25m, 1994);
             rememberMe.Publisher = "Pocket Books";
             rememberMe.ISBN = "0671867091";
             rememberMe.ImageFileName = "remember-me.jfif";
+            rememberMe.Category = "Book";
 
-            Book atss = new Book("Khaled Hosseini", "A Thousand Splendid Suns", 103.05m, 2007);
+            Book atss = new Book(10002, "Khaled Hosseini", "A Thousand Splendid Suns", 103.05m, 2007);
             atss.Publisher = "ATSS Publications, LLC";
             atss.ISBN = "978 0 7475 8279 3 10 9 8 7 6";
             atss.ImageFileName = "atss.jfif";
+            atss.Category = "Book";
 
             Products.Add(rememberMe);
             Products.Add(atss);
 
-            Movie gdt = new Movie("Gladiator", 130.50m, "gladiator.jpg", "Ridley Scott");
-            Movie jb = new Movie("Jungle Book", 160.50m, "junglebook.jpg", "John Favreau");
+            Movie gdt = new Movie(10003, "Gladiator", 130.50m, "gladiator.jpg", "Ridley Scott");
+            Movie jb = new Movie(10004, "Jungle Book", 160.50m, "junglebook.jpg", "John Favreau");
+            gdt.Category = "Movie";
+            jb.Category = "Movie";
 
             Products.Add(gdt);
             Products.Add(jb);
 
-            MusicCD nightVisions = new MusicCD("Imagine Dragons", "Night Visions", 150.00m, 2012);
+            MusicCD nightVisions = new MusicCD(10005, "Imagine Dragons", "Night Visions", 150.00m, 2012);
             nightVisions.Label = "KIDinaKORNER";
             nightVisions.ImageFileName = "night_visions.jpeg";
+            nightVisions.Category = "CD";
 
             nightVisions.AddTrack(new Track("Radioactive", "Grant", new TimeSpan(0, 3, 16)));
             nightVisions.AddTrack(new Track("Tiptoe", "Dan Reynolds", new TimeSpan(0, 3, 13)));
@@ -50,7 +55,7 @@ namespace MbmStore.Infrastructure
             nightVisions.AddTrack(new Track("Working Man", new TimeSpan(0, 3, 53)));
             nightVisions.AddTrack(new Track("Fallen", new TimeSpan(0, 2, 59)));
 
-            MusicCD sdn = new MusicCD("Milky Chance", "Sadnecessary", 149.05m, 2013);
+            MusicCD sdn = new MusicCD(10006, "Milky Chance", "Sadnecessary", 149.05m, 2013);
             sdn.Label = "Lichtdicht";
             sdn.ImageFileName = "sadnecessary.jfif";
 
@@ -66,6 +71,7 @@ namespace MbmStore.Infrastructure
             sdn.AddTrack(new Track("Fairytale", "Dausch, Rehbein", new TimeSpan(0, 4, 18)));
             sdn.AddTrack(new Track("Stolen Dance", "Dausch, Rehbein", new TimeSpan(0, 5, 15)));
             sdn.AddTrack(new Track("Loveland", "Dausch, Rehbein", new TimeSpan(0, 3, 38)));
+            sdn.Category = "CD";
 
             Products.Add(nightVisions);
             Products.Add(sdn);

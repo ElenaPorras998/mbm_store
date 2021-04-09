@@ -12,6 +12,7 @@ namespace MbmStore.Models
 
         // properties
         public int ProductId { get; set; }
+        public string Category { get; set; }
         public string Title { get; }
         public string ImageFileName { get; set; }
         public decimal Price
@@ -32,13 +33,15 @@ namespace MbmStore.Models
 
         public Product() { }
 
-        public Product(string title, decimal price)
+        public Product(int productId, string title, decimal price)
         {
+            ProductId = productId;
             Title = title;
             this.price = price;
         }
-        public Product(string title, decimal price, string file)
+        public Product(int productId, string title, decimal price, string file)
         {
+            ProductId = productId;
             Title = title;
             this.price = price;
             ImageFileName = file;
